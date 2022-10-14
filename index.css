@@ -35,9 +35,13 @@ nav > ul > li:first-of-type {
 nav > ul > li:last-of-type {
     border-top-right-radius: 10px;
 }
-nav > ul > li:hover {
+nav > ul > li > a:hover {
     color: white;
     cursor: pointer;
+}
+nav > ul > li > a {
+    color: red;
+    text-decoration: none;
 }
 
 section {
@@ -72,4 +76,8 @@ footer > p {
 footer > p > span {
     color: darkviolet;
     text-decoration: underline;
+}
+
+.active {
+    color: white;
 }
