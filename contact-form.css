@@ -1,0 +1,30 @@
+.valid {
+    background-color: white;
+}
+
+.invalid {
+    background-color: orange;
+    color: black;
+}
+
+form div ul {
+    list-style: disc;
+    color: black;
+}
+
+form div ul li {
+    background-color: #5e9ea0;
+    color: black;
+}
+
+#errors {
+    padding-top: 2%;
+    justify-content:  center;
+    width: 100%;
+}
+
+#errorDetails {
+    margin: 0;
+    padding: 2%;
+    text-align: center;
+}
