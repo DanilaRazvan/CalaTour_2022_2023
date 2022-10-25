@@ -4,8 +4,13 @@
     <link rel="stylesheet" href="index.css" type="text/css">
     <link rel="stylesheet" href="contact.css" type="text/css">
     <link rel="stylesheet" href="contact-form.css" type="text/css">
+    <link rel="stylesheet" href="chat.css" type="text/css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="contact.js"></script>
+    <script src="jQuery.js"></script>
+    <script src="chat.js"></script>
     <title>Calatour</title>
 </head>
 
@@ -86,6 +91,35 @@
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo rerum libero suscipit eaque fuga autem quas, qui quos maiores nobis aspernatur exercitationem veniam. Magni, optio voluptate maiores sed corrupti tempore?</p>
         </div>
     </section>
+
+    <div id="chat">
+        <div id="title">
+            <h4>
+                <i class="fa fa-comments"></i>
+                <span>Chat with us!</span>
+            </h4>
+        </div>
+
+        <div id="chat_form">
+            <form>
+                <div id="message">
+                    <h3>
+                        <i class="fa fa-lock"></i>
+                        <span>Authentication required!</span>
+                    </h3>
+                </div>
+
+                <input type="text" id="username" placeholder="username">
+                <input type="password" id="password" placeholder="password">
+                <button id="authenticate_button">Authenticate</button>
+            </form>
+        </div>
+
+        <div id="processing">
+            <img src="images/loading.gif">
+            <p>Processing...</p>
+        </div>
+    </div>
 
     <footer>
         <p>&copy; 2014 <span>Computer Graphics and Interactive Systems</span></p>
