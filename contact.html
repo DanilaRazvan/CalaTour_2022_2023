@@ -5,12 +5,14 @@
     <link rel="stylesheet" href="contact.css" type="text/css">
     <link rel="stylesheet" href="contact-form.css" type="text/css">
     <link rel="stylesheet" href="chat.css" type="text/css">
+    <link rel="stylesheet" href="chat2.css" type="text/css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="contact.js"></script>
     <script src="jQuery.js"></script>
     <script src="chat.js"></script>
+    <script src="chat2.js"></script>
     <title>Calatour</title>
 </head>
 
@@ -25,6 +27,8 @@
             <li><a>Swimming</a></li>
             <li><a>Special offers</a></li>
             <li><a class="active" href="contact.html">Contact</a></li>
+            <li><a style="cursor: pointer" id="readMessages">Read MSG</a></li>
+            <li><a style="cursor: pointer" id="globalLogout">Global Logout</a></li>
         </ul>
         <img src="images/caribbean.jpg" alt="">
     </nav>
@@ -111,8 +115,21 @@
 
                 <input type="text" id="username" placeholder="username">
                 <input type="password" id="password" placeholder="password">
-                <button id="authenticate_button">Authenticate</button>
+                <button type="submit" id="authenticate_button">Authenticate</button>
             </form>
+        </div>
+
+        <div id="welcome">
+            <h5><i class="fa fa-user"></i>Welcome <span>ChatUser_1</span></h5>
+            <i class="fa fa-sign-out"></i>
+        </div>
+
+        <div id="conversation">
+            <div id="messagesList"></div>
+            <div id="messageInput">
+                <input type="text" placeholder="Type message">
+                <button id="sendMessageButton">Send</button>
+            </div>
         </div>
 
         <div id="processing">

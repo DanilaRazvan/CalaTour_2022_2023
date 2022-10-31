@@ -35,29 +35,29 @@ $(document).ready(function () {
 
     let icon = $("#message h3 i")
     let msg = $("#message h3 span")
-    $("#chat_form form button").click(function () {
-        disableInputs(true)
+    // $("#chat_form form button").click(function () {
+    //     disableInputs(true)
 
-        $("#processing").show()
-        setTimeout(
-            function () {
-                $("#processing").hide()
+    //     $("#processing").show()
+    //     setTimeout(
+    //         function () {
+    //             $("#processing").hide()
 
-                if (!checkUsername() || !checkPassword()) {
-                    icon.removeClass("fa fa-lock").removeClass("fa fa-check").addClass("fa fa-ban").css("color", "red")
-                    msg.html("Invalid username or password").css("color", "red")
-                } else {
-                    icon.removeClass("fa fa-lock").removeClass("fa fa-ban").addClass("fa fa-check").css("color", "lightgreen")
-                    msg.html("Authentication successful!").css("color", "lightgreen")
-                }
+    //             if (!checkUsername() || !checkPassword()) {
+    //                 icon.removeClass("fa fa-lock").removeClass("fa fa-check").addClass("fa fa-ban").css("color", "red")
+    //                 msg.html("Invalid username or password").css("color", "red")
+    //             } else {
+    //                 icon.removeClass("fa fa-lock").removeClass("fa fa-ban").addClass("fa fa-check").css("color", "lightgreen")
+    //                 msg.html("Authentication successful!").css("color", "lightgreen")
+    //             }
     
-                disableInputs(false)
-            },
-            3000
-        )
+    //             disableInputs(false)
+    //         },
+    //         3000
+    //     )
 
-        return false
-    })
+    //     return false
+    // })
 })
 
 function disableInputs(cond) {
