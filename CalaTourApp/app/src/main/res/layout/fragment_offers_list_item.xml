@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        tools:text="Maldive, 3 nights"/>
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        tools:srcCompat="@tools:sample/backgrounds/scenic" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintTop_toBottomOf="@id/image"
+        android:textSize="18sp"
+        android:textStyle="italic"
+        android:textColor="@color/black"
+
+        tools:text=" aksdfugasdug lsadkfufliyasdg lksl gadlgfe iygfaslhs"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
