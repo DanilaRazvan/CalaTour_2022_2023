@@ -9,5 +9,6 @@ data class Offer(
     val imageUrl: String,
     val price: Double,
     val currency: String,
-    val description: String
+    val description: String,
+    val isFavorite: Boolean = false
 )

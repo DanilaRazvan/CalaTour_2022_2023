@@ -2,12 +2,23 @@ package com.example.calatourapp.offers
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.calatourapp.R
 import com.example.calatourapp.databinding.FragmentOffersListItemBinding
 import com.example.calatourapp.models.Offer
+import java.util.UUID
 
-class OffersAdapter : RecyclerView.Adapter<OffersAdapter.OffersViewHolder>() {
+class OffersAdapter(
+    private val offersClickListener: OffersClickListener
+) : RecyclerView.Adapter<OffersAdapter.OffersViewHolder>() {
+
+    interface OffersClickListener {
+        fun onAdd(index: Int)
+        fun onRemove(id: UUID)
+        fun itemSelected(id: UUID)
+    }
 
     private val dataSource = mutableListOf<Offer>()
 
@@ -40,6 +51,32 @@ class OffersAdapter : RecyclerView.Adapter<OffersAdapter.OffersViewHolder>() {
             binding.image.load(
                 data = offer.imageUrl
             )
+
+            binding.root.setOnLongClickListener {
+                val popupMenu = PopupMenu(
+                    binding.root.context,
+                    binding.root
+                )
+                popupMenu.inflate(R.menu.offers_context_menu)
+                popupMenu.setOnMenuItemClickListener { menuItem ->
+                    when(menuItem.itemId) {
+                        R.id.add_offer -> {
+                            offersClickListener.onAdd(position + 1)
+                            true
+                        }
+
+                        R.id.remove_offer -> {
+                            offersClickListener.onRemove(offer.id)
+                            true
+                        }
+
+                        else -> false
+                    }
+                }
+
+                popupMenu.show()
+                false
+            }
         }
     }
 

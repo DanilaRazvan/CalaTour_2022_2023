@@ -18,5 +18,18 @@
         android:id="@+id/offersFragment"
         android:name="com.example.calatourapp.offers.OffersFragment"
         android:label="fragment_offers"
-        tools:layout="@layout/fragment_offers" />
+        tools:layout="@layout/fragment_offers" >
+        <action
+            android:id="@+id/action_offersFragment_to_offerDetailsFragment"
+            app:destination="@id/offerDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offerDetailsFragment"
+        android:name="com.example.calatourapp.offerdetails.OfferDetailsFragment"
+        android:label="fragment_offer_details"
+        tools:layout="@layout/fragment_offer_details" >
+        <argument
+            android:name="offerId"
+            app:argType="string" />
+    </fragment>
 </navigation>

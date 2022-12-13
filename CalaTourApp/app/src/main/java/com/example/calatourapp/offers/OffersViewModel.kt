@@ -46,6 +46,15 @@ class OffersViewModel(
             )
         }
     }
+
+    fun resetList() {
+        val newList = repository.resetList()
+        _viewState.update {
+            it.copy(
+                offers = newList
+            )
+        }
+    }
 }
 
 data class OffersViewState(
