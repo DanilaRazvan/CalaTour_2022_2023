@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.calatourapp.models.Offer
 import com.example.calatourapp.repository.OffersRepository
+import com.example.calatourapp.repository.OffersRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -11,8 +12,9 @@ import java.util.*
 
 class OfferDetailsViewModel(
     savedStateHandle: SavedStateHandle,
-    private val repository: OffersRepository
 ) : ViewModel() {
+
+    private val repository: OffersRepository = OffersRepositoryImpl
 
     private val _viewState = MutableStateFlow(OfferDetailsViewState())
     val viewState = _viewState.asStateFlow()
@@ -32,6 +34,15 @@ class OfferDetailsViewModel(
                     offer = offer
                 )
             }
+        }
+    }
+
+    fun toggleIsFavorite() {
+        val newOffer = repository.toggleIsFavorite(viewState.value.offer!!.id)
+        _viewState.update {
+            it.copy(
+                offer = newOffer
+            )
         }
     }
 }

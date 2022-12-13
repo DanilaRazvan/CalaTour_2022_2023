@@ -1,12 +1,15 @@
 package com.example.calatourapp.offers
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.calatourapp.models.Offer
 import com.example.calatourapp.repository.OffersRepository
 import com.example.calatourapp.repository.OffersRepositoryImpl
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.util.UUID
 
 class OffersViewModel(
@@ -19,6 +22,26 @@ class OffersViewModel(
         )
     )
     val viewState = _viewState.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+
+            _viewState.update {
+                it.copy(
+                    isLoading = true
+                )
+            }
+
+            delay(3000L)
+
+            _viewState.update {
+                it.copy(
+                    isLoading = false
+                )
+            }
+        }
+
+    }
 
     fun addOffer(index: Int) {
         val newOffer = Offer(
@@ -58,5 +81,6 @@ class OffersViewModel(
 }
 
 data class OffersViewState(
-    val offers: List<Offer>
+    val offers: List<Offer>,
+    val isLoading: Boolean = false
 )

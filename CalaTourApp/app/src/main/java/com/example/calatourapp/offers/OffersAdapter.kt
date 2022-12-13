@@ -52,6 +52,9 @@ class OffersAdapter(
                 data = offer.imageUrl
             )
 
+            binding.root.setOnClickListener {
+                offersClickListener.itemSelected(offer.id)
+            }
             binding.root.setOnLongClickListener {
                 val popupMenu = PopupMenu(
                     binding.root.context,

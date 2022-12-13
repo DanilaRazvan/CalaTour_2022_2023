@@ -56,7 +56,7 @@ class LoginFragment : Fragment() {
                         navigateToOffers()
                     }
                     is LoginViewAction.ShowInputErrors -> {
-
+                        
                     }
                     null -> Unit
                 }

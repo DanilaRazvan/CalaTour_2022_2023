@@ -106,6 +106,15 @@ class OffersFragment : Fragment() {
     private fun observeState() {
         viewLifecycleOwner.lifecycleScope.launchWhenResumed {
             viewModel.viewState.collect { viewState ->
+
+                binding.loading.visibility =
+                    if (viewState.isLoading) View.VISIBLE
+                    else View.GONE
+                binding.list.visibility =
+                    if (viewState.isLoading) View.GONE
+                    else View.VISIBLE
+
+
                 adapter.setData(viewState.offers)
             }
         }

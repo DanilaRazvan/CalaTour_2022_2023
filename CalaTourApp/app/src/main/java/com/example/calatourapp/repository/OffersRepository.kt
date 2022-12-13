@@ -13,6 +13,8 @@ interface OffersRepository {
     fun removeOfferById(id: UUID): List<Offer>
 
     fun resetList(): List<Offer>
+
+    fun toggleIsFavorite(id: UUID): Offer
 }
 
 object OffersRepositoryImpl: OffersRepository {
@@ -68,4 +70,17 @@ object OffersRepositoryImpl: OffersRepository {
             clear()
             addAll(initialOffers)
         }.toList()
+
+    override fun toggleIsFavorite(id: UUID): Offer {
+        val index = offers.indexOfFirst { it.id == id }
+        val offer = offers[index]
+
+        val newOffer = offer.copy(
+            isFavorite = !offer.isFavorite
+        )
+
+        offers[index] = newOffer
+
+        return newOffer
+    }
 }

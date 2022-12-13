@@ -33,11 +33,23 @@ class LoginViewModel : ViewModel() {
         val username = _viewState.value.username
         val password = _viewState.value.password
 
-        _viewState.update { state ->
-            state.copy(
-                action = LoginViewAction.LoggedIn
-            )
+        // TODO: extend validation logic
+        if (username.length < 3) {
+            _viewState.update {
+                it.copy(
+                    action = LoginViewAction.ShowInputErrors(
+                        usernameError = InputErrorType.Invalid
+                    )
+                )
+            }
+        } else {
+            _viewState.update { state ->
+                state.copy(
+                    action = LoginViewAction.LoggedIn
+                )
+            }
         }
+
     }
 }
 
