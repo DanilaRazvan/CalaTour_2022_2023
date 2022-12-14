@@ -98,6 +98,11 @@ class OffersFragment : Fragment() {
                 R.id.clear_favorites -> {
                     return@setOnMenuItemClickListener true
                 }
+                R.id.chat_with_us -> {
+                    val direction = OffersFragmentDirections.actionOffersFragmentToChatFragment()
+                    findNavController().navigate(direction)
+                    true
+                }
                 else -> false
             }
         }

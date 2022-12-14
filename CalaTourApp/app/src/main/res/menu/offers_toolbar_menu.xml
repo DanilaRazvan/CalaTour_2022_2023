@@ -16,4 +16,9 @@
         android:id="@+id/clear_favorites"
         android:title="Clear favorites"
         app:showAsAction="never"/>
+
+    <item
+        android:id="@+id/chat_with_us"
+        android:title="Chat with us"
+        app:showAsAction="never"/>
 </menu>

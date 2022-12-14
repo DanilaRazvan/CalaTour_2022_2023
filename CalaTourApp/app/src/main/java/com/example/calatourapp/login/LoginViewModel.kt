@@ -1,11 +1,17 @@
 package com.example.calatourapp.login
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.calatourapp.repository.AuthenticationRepository
+import com.example.calatourapp.repository.AuthenticationRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(
+    private val authenticationRepository: AuthenticationRepository = AuthenticationRepositoryImpl
+) : ViewModel() {
 
     private val initialState = LoginViewState()
     private val _viewState = MutableStateFlow(initialState)
@@ -29,27 +35,83 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-    fun onLogin() {
-        val username = _viewState.value.username
-        val password = _viewState.value.password
-
-        // TODO: extend validation logic
-        if (username.length < 3) {
-            _viewState.update {
-                it.copy(
-                    action = LoginViewAction.ShowInputErrors(
-                        usernameError = InputErrorType.Invalid
-                    )
-                )
-            }
-        } else {
-            _viewState.update { state ->
-                state.copy(
-                    action = LoginViewAction.LoggedIn
-                )
-            }
+    fun onLogin() = viewModelScope.launch {
+        val username = viewState.value.username
+        val usernameError = when {
+//            username.isBlank() -> InputErrorType.Empty
+//            username.length < 3 -> InputErrorType.TooShort
+//            username != "admin" -> InputErrorType.Invalid
+            else -> null
         }
 
+        val password = viewState.value.password
+        val passwordError = when {
+//            password.isBlank() -> InputErrorType.Empty
+//            password.length < 3 -> InputErrorType.TooShort
+//            password != "password" -> InputErrorType.Invalid
+            else -> null
+        }
+
+        when {
+            /*
+            usernameError != null && passwordError != null -> {
+                _viewState.update {
+                    it.copy(
+                        action = LoginViewAction.ShowInputErrors(
+                            usernameErrorType = usernameError,
+                            passwordErrorType = passwordError
+                        )
+                    )
+                }
+            }
+
+            usernameError != null -> {
+                _viewState.update {
+                    it.copy(
+                        action = LoginViewAction.ShowInputErrors(
+                            usernameErrorType = usernameError
+                        )
+                    )
+                }
+            }
+
+            passwordError != null -> {
+                _viewState.update {
+                    it.copy(
+                        action = LoginViewAction.ShowInputErrors(
+                            passwordErrorType = passwordError
+                        )
+                    )
+                }
+            }
+            */
+            else -> {
+                val isSuccessful = authenticationRepository.login(
+                    username = username,
+                    password = password
+                )
+
+                println("@@@@@@@@@@@@@@@@@@@@ $isSuccessful")
+
+                _viewState.update {
+                    it.copy(
+                        action =
+                            if (isSuccessful) LoginViewAction.LoggedIn
+                            else LoginViewAction.ShowInputErrors(null, null)
+                    )
+                }
+            }
+        }
+    }
+
+    fun onGlobalLogout() = viewModelScope.launch {
+        val username = viewState.value.username
+        val password = viewState.value.password
+
+        authenticationRepository.globalLogout(
+            username = username,
+            password = password
+        )
     }
 }
 
